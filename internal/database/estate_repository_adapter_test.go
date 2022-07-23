@@ -1,21 +1,20 @@
 package database
 
 import (
-	"github.com/pozelim/go-hexagonal-example/internal/app/model"
 	"testing"
 )
 
 func TestEstateAdapter_Create(t *testing.T) {
 	type args struct {
-		estate model.Estate
+		estate domain.Estate
 	}
 
 	arg := args{
-		estate: model.Estate{
-			ID:    model.EstateID("2BkzYyKOMvdUCnBTAkQ57EFWzS7"),
+		estate: domain.Estate{
+			ID:    domain.EstateID("2BkzYyKOMvdUCnBTAkQ57EFWzS7"),
 			Name:  "Dummy Place",
-			Point: model.Point{},
-			Price: model.Price{},
+			Point: domain.Point{},
+			Price: domain.Price{},
 			Area:  0,
 		},
 	}

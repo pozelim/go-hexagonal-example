@@ -2,7 +2,7 @@ package app
 
 import (
 	"errors"
-	"github.com/pozelim/go-hexagonal-example/internal/app/model"
+	"github.com/pozelim/go-hexagonal-example/internal/app/domain"
 	"github.com/pozelim/go-hexagonal-example/test/mock"
 	"testing"
 )
@@ -12,7 +12,7 @@ func TestEstateService_Create(t *testing.T) {
 		estateRepository EstateRepositoryPort
 	}
 	type args struct {
-		estate model.Estate
+		estate domain.Estate
 	}
 	tests := []struct {
 		name    string
@@ -24,19 +24,19 @@ func TestEstateService_Create(t *testing.T) {
 			name:   "Should create a new estate",
 			fields: fields{&mock.EstateRepository{}},
 			args: args{
-				model.Estate{},
+				domain.Estate{},
 			},
 			wantErr: false,
 		},
 		{
 			name: "Should return error if repository return error",
 			fields: fields{&mock.EstateRepository{
-				SaveFn: func(estate model.Estate) error {
+				SaveFn: func(estate domain.Estate) error {
 					return errors.New("mock error")
 				},
 			}},
 			args: args{
-				model.Estate{},
+				domain.Estate{},
 			},
 			wantErr: true,
 		},
