@@ -1,17 +1,18 @@
-package app
+package service
 
 import (
 	"errors"
-	"github.com/pozelim/go-hexagonal-example/test/mock"
+	"github.com/pozelim/go-hexagonal-example/internal/app"
+	"github.com/pozelim/go-hexagonal-example/internal/app/mock"
 	"testing"
 )
 
 func TestEstateService_Create(t *testing.T) {
 	type fields struct {
-		estateRepository EstateRepositoryPort
+		estateRepository app.EstateStorage
 	}
 	type args struct {
-		estate Estate
+		estate app.Estate
 	}
 	tests := []struct {
 		name    string
@@ -23,26 +24,26 @@ func TestEstateService_Create(t *testing.T) {
 			name:   "Should create a new estate",
 			fields: fields{&mock.EstateRepository{}},
 			args: args{
-				Estate{},
+				app.Estate{},
 			},
 			wantErr: false,
 		},
 		{
 			name: "Should return error if repository return error",
 			fields: fields{&mock.EstateRepository{
-				SaveFn: func(estate Estate) error {
+				SaveFn: func(estate app.Estate) error {
 					return errors.New("mock error")
 				},
 			}},
 			args: args{
-				Estate{},
+				app.Estate{},
 			},
 			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			e := &EstateService{
+			e := &Estate{
 				estateRepository: tt.fields.estateRepository,
 			}
 			got, err := e.Create(tt.args.estate)

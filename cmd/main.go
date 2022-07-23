@@ -3,14 +3,15 @@ package main
 import (
 	"fmt"
 	"github.com/pozelim/go-hexagonal-example/internal/app"
+	"github.com/pozelim/go-hexagonal-example/internal/app/inmemory"
+	"github.com/pozelim/go-hexagonal-example/internal/app/service"
 	"github.com/pozelim/go-hexagonal-example/internal/configuration"
-	"github.com/pozelim/go-hexagonal-example/internal/database"
 )
 
 func main() {
 	fmt.Println("I'm alive!")
 	_ = configuration.New()
-	estateService := app.NewEstateService(database.NewEstateRepositoryAdapter())
+	estateService := service.NewEstateService(inmemory.NewEstateStorage())
 	e, _ := estateService.Create(app.Estate{
 		Name: "Estate test",
 		Point: app.Point{

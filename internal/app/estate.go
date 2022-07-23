@@ -9,3 +9,13 @@ type Estate struct {
 }
 
 type EstateID string
+
+type EstatePort interface {
+	Create(Estate) (Estate, error)
+	Remove(EstateID) error
+}
+
+type EstateStorage interface {
+	Save(Estate) error
+	Delete(EstateID) error
+}

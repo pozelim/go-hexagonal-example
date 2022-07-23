@@ -1,4 +1,4 @@
-package database
+package inmemory
 
 import (
 	"github.com/pozelim/go-hexagonal-example/internal/app"
@@ -21,7 +21,7 @@ func TestEstateAdapter_Create(t *testing.T) {
 	}
 
 	t.Run("Save should return error when creating twice", func(t *testing.T) {
-		e := NewEstateRepositoryAdapter()
+		e := NewEstateStorage()
 		e.Save(arg.estate)
 		if err := e.Save(arg.estate); err == nil {
 			t.Errorf("Save() error = %v, wantErr false", err)
