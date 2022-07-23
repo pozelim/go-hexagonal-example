@@ -2,6 +2,7 @@ package database
 
 import (
 	"errors"
+	"github.com/pozelim/go-hexagonal-example/internal/app/domain"
 )
 
 type EstateRepositoryAdapter struct {

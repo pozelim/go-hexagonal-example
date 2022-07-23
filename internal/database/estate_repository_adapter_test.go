@@ -1,6 +1,7 @@
 package database
 
 import (
+	"github.com/pozelim/go-hexagonal-example/internal/app/domain"
 	"testing"
 )
 

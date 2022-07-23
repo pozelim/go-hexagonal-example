@@ -1,5 +1,7 @@
 package mock
 
+import "github.com/pozelim/go-hexagonal-example/internal/app/domain"
+
 type EstateRepository struct {
 	SaveFn   func(domain.Estate) error
 	DeleteFn func(domain.EstateID) error
