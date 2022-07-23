@@ -1,33 +1,32 @@
 package app
 
 import (
-	"github.com/pozelim/go-hexagonal-example/internal/app/domain"
 	"github.com/segmentio/ksuid"
 )
 
 type EstatePort interface {
-	Create(domain.Estate) (domain.Estate, error)
-	Remove(id domain.EstateID) error
+	Create(Estate) (Estate, error)
+	Remove(id EstateID) error
 }
 
 type EstateRepositoryPort interface {
-	Save(domain.Estate) error
-	Delete(domain.EstateID) error
+	Save(Estate) error
+	Delete(EstateID) error
 }
 
 type EstateService struct {
 	estateRepository EstateRepositoryPort
 }
 
-func (e *EstateService) Create(estate domain.Estate) (domain.Estate, error) {
-	estate.ID = domain.EstateID(ksuid.New().String())
+func (e *EstateService) Create(estate Estate) (Estate, error) {
+	estate.ID = EstateID(ksuid.New().String())
 	if err := e.estateRepository.Save(estate); err != nil {
-		return domain.Estate{}, err
+		return Estate{}, err
 	}
 	return estate, nil
 }
 
-func (e *EstateService) Remove(id domain.EstateID) error {
+func (e *EstateService) Remove(id EstateID) error {
 	//TODO implement me
 	panic("implement me")
 }

@@ -1,4 +1,4 @@
-package domain
+package app
 
 type Point struct {
 	Lat float32

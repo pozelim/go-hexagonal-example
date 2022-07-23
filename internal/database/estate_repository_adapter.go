@@ -2,20 +2,20 @@ package database
 
 import (
 	"errors"
-	"github.com/pozelim/go-hexagonal-example/internal/app/domain"
+	"github.com/pozelim/go-hexagonal-example/internal/app"
 )
 
 type EstateRepositoryAdapter struct {
-	repository map[domain.EstateID]domain.Estate
+	repository map[app.EstateID]app.Estate
 }
 
 func NewEstateRepositoryAdapter() *EstateRepositoryAdapter {
 	return &EstateRepositoryAdapter{
-		repository: make(map[domain.EstateID]domain.Estate),
+		repository: make(map[app.EstateID]app.Estate),
 	}
 }
 
-func (e *EstateRepositoryAdapter) Save(estate domain.Estate) error {
+func (e *EstateRepositoryAdapter) Save(estate app.Estate) error {
 	if _, ok := e.repository[estate.ID]; ok {
 		return errors.New("estate with same ID already exists")
 	}
@@ -23,7 +23,7 @@ func (e *EstateRepositoryAdapter) Save(estate domain.Estate) error {
 	return nil
 }
 
-func (e EstateRepositoryAdapter) Delete(id domain.EstateID) error {
+func (e EstateRepositoryAdapter) Delete(id app.EstateID) error {
 	delete(e.repository, id)
 	return nil
 }
