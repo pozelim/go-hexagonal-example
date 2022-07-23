@@ -44,7 +44,7 @@ func TestEstateService_Create(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			e := &Estate{
-				estateRepository: tt.fields.estateRepository,
+				estateStorage: tt.fields.estateRepository,
 			}
 			got, err := e.Create(tt.args.estate)
 			if (err != nil) != tt.wantErr {
