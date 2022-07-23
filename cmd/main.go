@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/pozelim/go-hexagonal-example/internal/app"
-	"github.com/pozelim/go-hexagonal-example/internal/app/inmemory"
 	"github.com/pozelim/go-hexagonal-example/internal/app/service"
+	"github.com/pozelim/go-hexagonal-example/internal/app/storage/inmemory"
 	"github.com/pozelim/go-hexagonal-example/internal/configuration"
 )
 

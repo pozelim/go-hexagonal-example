@@ -3,7 +3,7 @@ package service
 import (
 	"errors"
 	"github.com/pozelim/go-hexagonal-example/internal/app"
-	"github.com/pozelim/go-hexagonal-example/internal/app/mock"
+	"github.com/pozelim/go-hexagonal-example/internal/app/storage/mock"
 	"testing"
 )
 
