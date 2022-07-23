@@ -1,1 +1,3 @@
 appName: "go-hexagonal-example"
+postgres:
+  connStr: "postgresql://postgres:example@localhost/postgres?sslmode=disable"

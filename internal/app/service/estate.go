@@ -22,6 +22,5 @@ func (e *Estate) Create(estate app.Estate) (app.Estate, error) {
 }
 
 func (e *Estate) Remove(id app.EstateID) error {
-	//TODO implement me
-	panic("implement me")
+	return e.estateStorage.Delete(id)
 }

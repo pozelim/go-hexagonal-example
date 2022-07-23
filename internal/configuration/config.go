@@ -2,13 +2,15 @@ package configuration
 
 import (
 	"fmt"
+	"github.com/pozelim/go-hexagonal-example/internal/app/storage/postgres"
 	"github.com/spf13/viper"
 )
 
 type Config struct {
-	Port    int
-	Name    string
-	PathMap string `mapstructure:"path_map"`
+	Port     int
+	Name     string
+	PathMap  string          `mapstructure:"path_map"`
+	Postgres postgres.Config `mapstructure:"postgres"`
 }
 
 func New() Config {

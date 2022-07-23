@@ -3,7 +3,7 @@ package service
 import (
 	"errors"
 	"github.com/pozelim/go-hexagonal-example/internal/app"
-	"github.com/pozelim/go-hexagonal-example/internal/app/storage/mock"
+	"github.com/pozelim/go-hexagonal-example/internal/app/mock"
 	"testing"
 )
 
@@ -22,7 +22,7 @@ func TestEstateService_Create(t *testing.T) {
 	}{
 		{
 			name:   "Should create a new estate",
-			fields: fields{&mock.EstateRepository{}},
+			fields: fields{&mock.EstateStorage{}},
 			args: args{
 				app.Estate{},
 			},
@@ -30,7 +30,7 @@ func TestEstateService_Create(t *testing.T) {
 		},
 		{
 			name: "Should return error if repository return error",
-			fields: fields{&mock.EstateRepository{
+			fields: fields{&mock.EstateStorage{
 				SaveFn: func(estate app.Estate) error {
 					return errors.New("mock error")
 				},

@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"github.com/pozelim/go-hexagonal-example/internal/app"
 	"github.com/pozelim/go-hexagonal-example/internal/app/service"
-	"github.com/pozelim/go-hexagonal-example/internal/app/storage/inmemory"
+	"github.com/pozelim/go-hexagonal-example/internal/app/storage/postgres"
 	"github.com/pozelim/go-hexagonal-example/internal/configuration"
 )
 
 func main() {
 	fmt.Println("I'm alive!")
-	_ = configuration.New()
-	estateService := service.NewEstateService(inmemory.NewEstateStorage())
+	cfg := configuration.New()
+	estateService := service.NewEstateService(postgres.NewEstateStorage(cfg.Postgres))
 	e, _ := estateService.Create(app.Estate{
 		Name: "Estate test",
 		Point: app.Point{
@@ -24,5 +24,6 @@ func main() {
 		Area: 180,
 	})
 
+	estateService.Remove(e.ID)
 	fmt.Printf("%++v\n", e)
 }
